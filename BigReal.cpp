@@ -16,6 +16,120 @@ such as: +, -, <, and >.
 using namespace std;
 
 
+bool BigReal::operator<  (BigReal anotherReal)
+{
+    string num1 = num_real;
+    string num2 = anotherReal.num_real;
+    int l1 = num1.length();
+    int l2 = num2.length();
+    int x1 = 0;
+    int x2 = 0;
+    string num1_int;
+    string num2_int;
+    string num1_dec;
+    string num2_dec;
+    for(int i = 0; i < l1; i++)
+    {
+        if(num1[i]=='.')
+        {
+            x1 = i;
+            break;
+        }
+        num1_int = num1_int + num1[i];
+    }
+    for(int i = 0; i < l2; i++)
+    {
+        if(num2[i]=='.')
+        {
+            x2 = i;
+            break;
+        }
+        num2_int = num2_int + num2[i];
+    }
+    num1_dec = num1.substr(x1+1,l1);
+    num2_dec = num2.substr(x2+1,l2);
+    BigDecimalInt num1_int1(num1_int);
+    BigDecimalInt num2_int1(num2_int);
+    BigDecimalInt num1_dec1(num1_dec);
+    BigDecimalInt num2_dec1(num2_dec);
+    if(num1_int1 < num2_int1)
+    {
+        return true;
+    }
+    else if(num1_int1 > num2_int1)
+    {
+        return false;
+    }
+    else
+    {
+        if(num1_dec1 < num2_dec1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+bool BigReal::operator>  (BigReal anotherReal)
+{
+    string num1 = num_real;
+    string num2 = anotherReal.num_real;
+    int l1 = num1.length();
+    int l2 = num2.length();
+    int x1 = 0;
+    int x2 = 0;
+    string num1_int;
+    string num2_int;
+    string num1_dec;
+    string num2_dec;
+    for(int i = 0; i < l1; i++)
+    {
+        if(num1[i]=='.')
+        {
+            x1 = i;
+            break;
+        }
+        num1_int = num1_int + num1[i];
+    }
+    for(int i = 0; i < l2; i++)
+    {
+        if(num2[i]=='.')
+        {
+            x2 = i;
+            break;
+        }
+        num2_int = num2_int + num2[i];
+    }
+    num1_dec = num1.substr(x1+1,l1);
+    num2_dec = num2.substr(x2+1,l2);
+    BigDecimalInt num1_int1(num1_int);
+    BigDecimalInt num2_int1(num2_int);
+    BigDecimalInt num1_dec1(num1_dec);
+    BigDecimalInt num2_dec1(num2_dec);
+    if(num1_int1 > num2_int1)
+    {
+        return true;
+    }
+    else if(num1_int1 < num2_int1)
+    {
+        return false;
+    }
+    else
+    {
+        if(num1_dec1 > num2_dec1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
 
 BigReal BigReal::operator+(BigReal other) {
     int sizeNum1 = num_real.length();
