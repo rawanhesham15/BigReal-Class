@@ -15,7 +15,6 @@ such as: +, -, <, and >.
 
 using namespace std;
 
-
 bool BigReal::operator<  (BigReal anotherReal)
 {
     string num1 = num_real;
@@ -206,6 +205,35 @@ int BigReal::sign() {
     {
         return 1;
     }
+}
+
+ostream& operator << (ostream& out, BigReal num){
+    string num1 = num.num_real;
+    int l1 = num1.length();
+    int x1 = 0;
+    string num1_int;
+    string num1_dec;
+    for(int i = 0; i < l1; i++)
+    {
+        if(num1[i]=='.')
+        {
+            x1 = i;
+            break;
+        }
+        num1_int = num1_int + num1[i];
+    }
+    num1_dec = num1.substr(x1+1,l1);
+    BigDecimalInt num1_int1(num1_int);
+    BigDecimalInt num1_dec1(num1_dec);
+    out << num1_int1 << "." << num1_dec1;
+    return out;
+}
+
+istream& operator >> (istream& in, BigReal &num){
+    string num1;
+    in >> num1;
+    num.num_real = num1;
+    return in;
 }
 
 BigReal BigReal::operator+(BigReal other) {
