@@ -15,7 +15,6 @@ such as: +, -, <, and >.
 
 using namespace std;
 
-
 int main() {
     BigReal num("-198.001");
     BigReal num1("-81.71");
@@ -61,4 +60,3 @@ int main() {
     cin >> num10;
     cout << num10 << endl;
 }
-
