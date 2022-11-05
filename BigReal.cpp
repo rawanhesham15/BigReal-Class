@@ -175,6 +175,39 @@ bool BigReal::operator==(BigReal anotherReal) {
     }
 }
 
+int BigReal::size() {
+    string num1 = num_real;
+    int l1 = num1.length();
+    int x1 = 0;
+    string num1_int;
+    string num1_dec;
+    for(int i = 0; i < l1; i++)
+    {
+        if(num1[i]=='.')
+        {
+            x1 = i;
+            break;
+        }
+        num1_int = num1_int + num1[i];
+    }
+    num1_dec = num1.substr(x1+1,l1);
+    BigDecimalInt num1_int1(num1_int);
+    BigDecimalInt num1_dec1(num1_dec);
+    int sz = num1_int1.size() + num1_dec1.size();
+    return sz;
+}
+
+int BigReal::sign() {
+    if(num_real[0] == '-')
+    {
+        return -1;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
 BigReal BigReal::operator+(BigReal other) {
     int sizeNum1 = num_real.length();
     int sizeNum2 = other.num_real.length();
