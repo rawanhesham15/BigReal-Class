@@ -14,6 +14,50 @@ such as: +, -, <, and >.
 #include"BigDecInt.h"
 
 using namespace std;
+BigReal::BigReal(BigDecimalInt n){
+    num_real = n.getNumber();
+}
+
+bool BigReal::checkvalidreal(string real){
+    regex valid ("[+-]?[0-9]+[.][0-9]+");
+    return regex_match(real,valid);
+}
+
+BigReal:: BigReal(double real){
+    num_real=to_string(real);
+}
+
+BigReal:: BigReal(string real){
+    num_real = real;
+}
+
+BigReal::BigReal(const BigReal& other){
+    num_real=other.num_real;
+}
+
+BigReal& BigReal::operator=( BigReal& other){
+    num_real=other.num_real;
+    cout<<"copied number"<<num_real;
+    return *this;
+}
+
+BigReal& BigReal::operator=( BigReal&& other){
+    num_real=other.num_real;
+    other.num_real=" ";
+    return *this;
+}
+
+BigReal::BigReal( BigReal&& other){
+    num_real=other.num_real;
+    other.num_real=" ";
+}
+
+
+
+
+
+
+
 
 bool BigReal::operator<  (BigReal anotherReal)
 {
